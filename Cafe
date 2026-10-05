@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espresso Cafe | Coffee & Conversations</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fffaf3;
+  color: #352016;
+}
+
+header {
+  background: #2b1811;
+  color: white;
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #e9bd83;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 22px;
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: #e9bd83;
+}
+
+.hero {
+  min-height: 490px;
+  padding: 80px 8%;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, rgba(25,13,8,.92),
+    rgba(25,13,8,.35)),
+    url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+  color: white;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 65px);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  background: #c58a50;
+  color: white;
+  padding: 14px 27px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn:hover {
+  background: #9f6735;
+}
+
+section {
+  padding: 70px 8%;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #806c5c;
+  margin-bottom: 35px;
+  line-height: 1.7;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+
+.filter-btn {
+  padding: 10px 23px;
+  border: 1px solid #805537;
+  background: transparent;
+  color: #54321f;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: #54321f;
+  color: white;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  text-align: left;
+}
+
+.menu-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #38201612;
+  transition: transform .2s;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.menu-info {
+  padding: 20px;
+}
+
+.menu-info h3 {
+  margin-bottom: 9px;
+}
+
+.menu-info p {
+  color: #806c5c;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 44px;
+}
+
+.menu-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  gap: 10px;
+}
+
+.price {
+  color: #a46635;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.add-btn {
+  background: #54321f;
+  color: white;
+  border: none;
+  padding: 9px 13px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#cart {
+  background: #f1e5d5;
+  padding: 35px 8%;
+  text-align: center;
+}
+
+#cart-items {
+  list-style: none;
+  margin: 18px auto;
+  max-width: 500px;
+  text-align: left;
+}
+
+#cart-items li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #d8c5b1;
+  gap: 12px;
+}
+
+.cart-total {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 18px;
+}
+
+.about {
+  background: #fff;
+}
+
+.about-content {
+  max-width: 750px;
+  margin: auto;
+  line-height: 1.9;
+  color: #665144;
+}
+
+.contact {
+  background: #f1e5d5;
+}
+
+.contact p {
+  line-height: 2;
+}
+
+footer {
+  background: #2b1811;
+  color: white;
+  text-align: center;
+  padding: 24px;
+  line-height: 1.8;
+}
+
+@media (max-width: 850px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  header {
+    justify-content: center;
+  }
+
+  nav a {
+    margin: 0 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 420px;
+  }
+
+  section {
+    padding: 50px 6%;
+  }
+
+  .section-title {
+    font-size: 29px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">☕ Espresso Café</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#cart">My Order (<span id="cart-count">0</span>)</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Good Coffee.<br>Great Moments.</h1>
+    <p>
+      Welcome to Espresso Café, your cozy corner for freshly
+      brewed coffee, delicious treats, and beautiful conversations.
+    </p>
+    <a href="#menu" class="btn">Explore Our Menu</a>
+  </div>
+</section>
+
+<section id="menu">
+  <h2 class="section-title">Our Special Menu</h2>
+  <p class="subtitle">
+    Freshly prepared with love, one cup at a time.
+  </p>
+
+  <div class="filters">
+    <button class="filter-btn active"
+      onclick="filterMenu('All', this)">All</button>
+    <button class="filter-btn"
+      onclick="filterMenu('Coffee', this)">Coffee</button>
+    <button class="filter-btn"
+      onclick="filterMenu('Tea', this)">Tea</button>
+    <button class="filter-btn"
+      onclick="filterMenu('Snacks', this)">Snacks</button>
+  </div>
+
+  <div class="menu-grid" id="menu-grid"></div>
+</section>
+
+<section id="cart">
+  <h2 class="section-title">Your Order</h2>
+  <p class="subtitle">Your selected café favourites.</p>
+  <ul id="cart-items">
+    <li>Your cart is empty.</li>
+  </ul>
+  <div class="cart-total">
+    Total: ₹<span id="cart-total">0</span>
+  </div>
+  <button class="btn" onclick="placeOrder()">
+    Place Order
+  </button>
+  <p id="order-message" style="margin-top:15px"></p>
+</section>
+
+<section class="about" id="about">
+  <h2 class="section-title">Our Story</h2>
+  <p class="subtitle">A little coffee, a lot of happiness.</p>
+  <div class="about-content">
+    <p>
+      At Espresso Café, we believe every cup tells a story.
+      Our café is a welcoming place where coffee lovers can
+      relax, meet friends, study, or simply enjoy a peaceful
+      moment. From rich espresso to delicious snacks, we aim
+      to make every visit special.
+    </p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="section-title">Visit Our Café</h2>
+  <p class="subtitle">We look forward to serving you!</p>
+  <p>📍 Address: Your Café Address, Pune, Maharashtra</p>
+  <p>📞 Phone: +91 98765 43210</p>
+  <p>✉ Email: hello@espressocafe.example</p>
+  <p>🕒 Opening Hours: Monday–Sunday, 9 AM – 10 PM</p>
+</section>
+
+<footer>
+  <p>☕ Espresso Café</p>
+  <p>Made with love and freshly brewed coffee.</p>
+  <p>© 2026 Espresso Café. All rights reserved.</p>
+</footer>
+
+<script>
+const menu = [
+  {
+    name: "Espresso",
+    category: "Coffee",
+    price: 100,
+    description: "Strong, rich and freshly brewed coffee.",
+    image: "photo-1510707577719-ae7c14805e3a"
+  },
+  {
+    name: "Cappuccino",
+    category: "Coffee",
+    price: 150,
+    description: "Espresso topped with creamy milk foam.",
+    image: "photo-1572442388796-11668a67e53d"
+  },
+  {
+    name: "Cafe Latte",
+    category: "Coffee",
+    price: 160,
+    description: "Smooth espresso blended with steamed milk.",
+    image: "photo-1461023058943-07fcbe16d735"
+  },
+  {
+    name: "Mocha",
+    category: "Coffee",
+    price: 180,
+    description: "A delicious mix of coffee and chocolate.",
+    image: "photo-1578314675249-a6910f80cc4e"
+  },
+  {
+    name: "Masala Chai",
+    category: "Tea",
+    price: 50,
+    description: "Traditional Indian tea with aromatic spices.",
+    image: "photo-1571934811356-5cc061b6821f"
+  },
+  {
+    name: "Green Tea",
+    category: "Tea",
+    price: 70,
+    description: "A light and refreshing cup of green tea.",
+    image: "photo-1556679343-c7306c1976bc"
+  },
+  {
+    name: "Chocolate Muffin",
+    category: "Snacks",
+    price: 90,
+    description: "Soft, freshly baked chocolate muffin.",
+    image: "photo-1607958996333-41aef7caefaa"
+  },
+  {
+    name: "Veg Sandwich",
+    category: "Snacks",
+    price: 120,
+    description: "Toasted sandwich filled with fresh vegetables.",
+    image: "photo-1528735602780-2552fd46c7af"
+  },
+  {
+    name: "Chocolate Brownie",
+    category: "Snacks",
+    price: 110,
+    description: "Rich chocolate brownie for a sweet treat.",
+    image: "photo-1606313564200-e75d5e30476c"
+  }
+];
+
+let cart = [];
+
+function renderMenu(category = "All") {
+  const grid = document.getElementById("menu-grid");
+  grid.innerHTML = "";
+
+  const items = menu.filter(item =>
+    category === "All" || item.category === category
+  );
+
+  items.forEach(item => {
+    const index = menu.indexOf(item);
+    grid.innerHTML += `
+      <article class="menu-card">
+        <img
+          src="https://images.unsplash.com/${item.image}?auto=format&fit=crop&w=700&q=80"
+          alt="${item.name}"
+          loading="lazy"
+          onerror="this.src='https://placehold.co/600x400/ead8c5/54321f?text=Espresso+Cafe'">
+        <div class="menu-info">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <div class="menu-bottom">
+            <span class="price">₹${item.price}</span>
+            <button class="add-btn"
+              onclick="addToCart(${index})">+ Add</button>
+          </div>
+        </div>
+      </article>`;
+  });
+}
+
+function filterMenu(category, button) {
+  document.querySelectorAll(".filter-btn").forEach(btn =>
+    btn.classList.remove("active")
+  );
+  button.classList.add("active");
+  renderMenu(category);
+}
+
+function addToCart(index) {
+  cart.push(menu[index]);
+  document.getElementById("cart-count").textContent = cart.length;
+  document.getElementById("order-message").textContent = "";
+  renderCart();
+}
+
+function renderCart() {
+  const list = document.getElementById("cart-items");
+  list.innerHTML = "";
+  let total = 0;
+
+  if (cart.length === 0) {
+    list.innerHTML = "<li>Your cart is empty.</li>";
+  }
+
+  cart.forEach((item, index) => {
+    total += item.price;
+    list.innerHTML += `
+      <li>
+        <span>${item.name} — ₹${item.price}</span>
+        <button class="add-btn"
+          onclick="removeItem(${index})">Remove</button>
+      </li>`;
+  });
+
+  document.getElementById("cart-total").textContent = total;
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  document.getElementById("cart-count").textContent = cart.length;
+  renderCart();
+}
+
+function placeOrder() {
+  const message = document.getElementById("order-message");
+
+  if (cart.length === 0) {
+    message.textContent = "Please add an item before ordering.";
+    return;
+  }
+
+  message.textContent =
+    "Thank you! Your demo order has been prepared. " +
+    "Connect a real ordering service to receive orders.";
+}
+
+renderMenu();
+</script>
+
+</body>
+</html>
